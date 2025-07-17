@@ -5,7 +5,6 @@ import asyncio
 
 from obsidian.packet import AbstractResponsePacket, Packets
 from obsidian.blocks import AbstractBlock, BlockManager
-from obsidian.world import World
 from obsidian.log import Logger
 from obsidian.cpe import CPEExtension
 from obsidian.commands import Commands, _parseArgs
@@ -26,6 +25,7 @@ from obsidian.errors import (
 if TYPE_CHECKING:
     from obsidian.server import Server
     from obsidian.network import NetworkHandler
+    from obsidian.world import World
 
 
 # The Overall Server Player Manager
@@ -200,7 +200,7 @@ class PlayerManager:
                 message = f"<{serverConfig.operatorChatColor}{author.name}&f> {message}"
             else:
                 message = f"<{serverConfig.playerChatColor}{author.name}&f> {message}"
-
+        from obsidian.world import World
         # Add World Tag (If Requested)
         if isinstance(world, str):
             message = f"{serverConfig.worldChatColor}[{world}]&f {message}"
